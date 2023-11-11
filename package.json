@@ -1,0 +1,38 @@
+{
+  "name": "ticketeradb2api",
+  "version": "1.0.0",
+  "description": "Api dedicada a la entrega de datos de ticketera",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avillucas/ticketeradb2api.git"
+  },
+  "keywords": [
+    "ticketera",
+    "UTNcode",
+    "utnFra"
+  ],
+  "author": "avillucas@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avillucas/ticketeradb2api/issues"
+  },
+  "homepage": "https://github.com/avillucas/ticketeradb2api#readme",
+  "dependencies": {
+    "enum": "^3.0.4",
+    "express": "^4.18.2",
+    "mongose": "^0.0.2-security",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "connect-multiparty": "^2.1.0",
+    "jwt-simple": "^0.5.1",
+    "moment": "^2.20.1",
+    "mongoose-pagination": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
+  }
+}
