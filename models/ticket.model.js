@@ -1,6 +1,6 @@
-import mongose from 'mongose'
+var mongoose =  require('mongoose');
 // TODO  const {ticketEstado} = require ('../enums/ticketEstado.enum.js');
-const { Schema } = mongose
+var Schema = mongoose.Schema;
 
 
     /*
@@ -38,4 +38,4 @@ const ticketSchema = new Schema({
         require
     }
 });
-module.exports = mongose.model('Ticket',ticketSchema);
+module.exports = mongoose.model('Ticket',ticketSchema);

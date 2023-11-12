@@ -1,6 +1,6 @@
 'use strict'
 // Cargamos los modelos para usarlos posteriormente
-var User = require('../models/ticket.model');
+var Ticket = require('../models/ticket.model');
 
 // Conseguir datos de un usuario
 function getTicket(req, res) {
