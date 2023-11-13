@@ -183,8 +183,8 @@ db.getCollection('eventos').insertMany([
     notas: 'Se le indica al usuario que reinicie el model por medio del boton lo que hace que vuelva a funcionar'
    }
 ]);
-//ticket
-db.getCollection('ticket').insertMany([
+//tickets
+db.getCollection('tickets').insertMany([
     {
         cliente: {
             usuario: {
