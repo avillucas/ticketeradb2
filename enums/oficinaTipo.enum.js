@@ -1,4 +1,4 @@
 export default EOficinasTipo = {
-    atencionCliente: "atención al cliente",
-    tecnico: "servicio técnico"
+    atencionCliente: "Atención al cliente",
+    tecnico: "Servicio técnico"
 }

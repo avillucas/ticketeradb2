@@ -3,7 +3,7 @@
 // Cargamos el módulo de mongoose para poder conectarnos a MongoDB
 const mongoose = require('mongoose');
 // *Cargamos el fichero app.js con la configuración de Express
-const app = require('./app');
+//const app = require('./app');
 // Creamos la variable PORT para indicar el puerto en el que va a funcionar el servidor
 const port = 3800;
 // Le indicamos a Mongoose que haremos la conexión con Promesas
