@@ -1,5 +1,5 @@
 export default  ticketAreas  = {
-    atencionCliente: "atención al cliente",
-    tecnico: "servicio técnico",
-    financieros: "servicios financieros"
+    atencionCliente: "Atención al cliente",
+    tecnico: "Servicio técnico",
+    financieros: "Servicios financieros"
 }

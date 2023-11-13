@@ -2,25 +2,25 @@ var mongoose =  require('mongoose');
 var Schema = mongoose.Schema;
 
 const ticketSchema = new Schema({
-    client: {
+    cliente: {
         type:Object, 
         require
     },
-    status: {
+    estado: {
         type:String, 
         require,
         //default:ticketEstado.demorado
         default:"demorado"
     },
-    reason: {
+    razon: {
         type:Array, 
         require
     }, 
-    trace: {
+    historial: {
         type:Array, 
         require
     },
-    relatedAreas: {
+    areasRelacionadas: {
         type:Array, 
         require
     }

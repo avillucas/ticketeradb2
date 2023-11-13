@@ -1,5 +1,5 @@
 export default TicketEstado = {
-    demorado: "demorado",
-    pendiente: "pendiente",
-    resuelto: "resuelto"
+    demorado: "Demorado",
+    pendiente: "Pendiente",
+    resuelto: "Resuelto"
 }
