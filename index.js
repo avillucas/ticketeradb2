@@ -13,7 +13,7 @@ app.get('/api/v1/tickets', async (req, res) => {
     try {
         const data = await TicketModel.find();
         return res.status(200).json({
-            message: 'OK',
+            message: 'OK ',
             data
         });
     } catch (error) {
