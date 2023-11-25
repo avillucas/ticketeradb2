@@ -1,7 +1,7 @@
-// Utilizar funcionalidades del Ecmascript 6
 //'use strict'
+require('dotenv').config();
 const mongoose = require('mongoose');
-const mongoStringConnection = 'mongodb://localhost:27017/ticketera';
+const mongoStringConnection = process.env.MONGODB_CONNECT_URI;
 const connectDB = async () => {
     try {
         await mongoose.connect(mongoStringConnection, { useNewUrlParser: true, useUnifiedTopology: true });
