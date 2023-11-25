@@ -1,5 +1,5 @@
-import mongose from 'mongose'
-const { Schema } = mongose
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const canalSchema = new Schema({
     nombre: {
@@ -10,5 +10,5 @@ const canalSchema = new Schema({
         type:Number, 
         require,
     }
-});
-module.exports = mongose.model('Canal',canalSchema);
+}, { timestamps: true });
+module.exports = mongoose.model('canales', canalSchema);
