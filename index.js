@@ -9,9 +9,13 @@ const app = express();
 app.use(express.json());
 connectDB()
 
-app.get('/', (req, res) => {
+app.get('/api/v1/ticket', (req, res) => {
+    res.send('Hello ticket!')
+  })
+  app.get('/', (req, res) => {
     res.send('Hello World!')
   })
+  
   
 //todos los tickets
 app.get('/api/v1/tickets', async (req, res) => {
