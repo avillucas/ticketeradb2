@@ -1,32 +1,40 @@
 'use strict'
-const { default: ticketEstadoEnum } = require('../../enums/ticketEstado.enum');
-const { default: ticketMotivoEnum } = require('../../enums/ticketMotivo.enum');
+const { default: ticketEstadoEnum } = require('../enums/ticketEstado.enum');
+const { default: ticketMotivoEnum } = require('../enums/ticketMotivo.enum');
 // Cargamos los modelos para usarlos posteriormente
-var ticketModelo = require('../../models/ticket.model');
+var ticketModelo = require('../models/ticket.model');
 
-var controller = new Object();
 /**
- * TODO completar 
+ * retorna todos los tickets 
  * @param {*} req 
  * @param {*} res 
  */
-controller.traerTodos = function (req, res) {
-    return res.status(200).send();
-};
-
-/**
- * TODO completar 
- * @param {*} req 
- * @param {*} res 
- */
-controller.traerUno = function (req, res) {
-    var id = req.params.id;
-    //buscar un documento por un  id
-    ticketModelo.findById(id, (err, ticket) => {
-        if (err) return res.status(500).send({ message: 'Error en la petición' });
-        if (!ticket) return res.status(404).send({ message: 'El recurso no existe' });
-        return res.status(200).send(ticket);
+exports.traerTodos = async function (req, res) {
+  try {
+    const tickets = await ticketModelo.find();
+    return res.status(200).json(tickets);
+  } catch (error) {
+    return res.status(500).json({
+      msg: error.message,
     });
+  }
+};
+
+/**
+ * Retorna un ticket
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.traerUno = async function (req, res) {
+  try {
+    var id = req.params.id;
+    const tickets = await ticketModelo.findById(id);
+    return res.status(200).json(tickets);
+  } catch (error) {
+    return res.status(500).json({
+      msg: error.message,
+    });
+  }
 };
 
 /**
@@ -34,21 +42,35 @@ controller.traerUno = function (req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-controller.crearUno = function (req, res) {
-    return res.status(201).send();
+exports.crearUno = async function (req, res) {
+  try {
+    const ticketSolicitado = new Ticket(req.body);
+    const ticket = await ticketSolicitado.save();
+    res.status(201).json(ticket);
+  } catch (error) {
+    return res.status(500).json({
+      msg: error.message,
+    });
+  }
 };
 
-controller.modificarUno = function (req, res) {
-    return res.status(200).send();
-};
 
 /**
  * TODO completar 
  * @param {*} req 
  * @param {*} res 
  */
-controller.eliminarUno = function (req, res) {
-    return res.status(200).send();
+exports.eliminarUno = async function (req, res) {
+  try {
+    var id = req.params.id;
+    const ticketEliminado = await ticketModelo.deleteOne(id);
+    res.status(200).json(ticketEliminado);
+  } catch (error) {
+    return res.status(500).json({
+      msg: error.message,
+    });
+  }
+  return res.status(200).send();
 };
 
 //OPERADORES - - $eq, $gt, $gte, $lt, $lte, $ne, $in, $nin
@@ -101,8 +123,8 @@ exports.traerTicketsLt = async (req, res) => {
 //GET - ($lte) Traer tickets creados entre enero y mayo de 2023
 exports.traerTicketsLte = async (req, res) => {
   try {
-    const inicio =new Date("2023-01-01");
-    const fin =new Date("2023-05-01");
+    const inicio = new Date("2023-01-01");
+    const fin = new Date("2023-05-01");
     const tc = await Ticket.find({
       "fechaCreacion": {
         $gte: inicio,
@@ -182,7 +204,7 @@ exports.traerTicketsNor = async (req, res) => {
     const traerTicketsNor = await Ticket.find({
       $nor: [
         { "cliente.esEmpleado": true },
-        { "estado": ticketEstadoEnum.resuelto}
+        { "estado": ticketEstadoEnum.resuelto }
       ]
     });
     res.status(200).json(traerTicketsNor);
@@ -327,7 +349,7 @@ exports.traerTicketsExists = async (req, res) => {
 //GET - ($all) Traer clientes que tienen Canal 10 
 exports.traerTicketsAll = async (req, res) => {
   try {
-    const  buscados = [10];
+    const buscados = [10];
     const todos = await Ticket.find({
       "cliente.plan.canales": { $all: buscados }
     });

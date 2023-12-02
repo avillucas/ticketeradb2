@@ -23,20 +23,31 @@
 					"response": []
 				},
 				{
+					"name": "Todos Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}tickets",
+							"host": [
+								"{{endpoint}}tickets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Uno",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/artista/2",
+							"raw": "{{endpoint}}tickets/1",
 							"host": [
-								"localhost"
+								"{{endpoint}}tickets"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"artista",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -48,15 +59,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/artista/2",
+							"raw": "{{endpoint}}tickets/1",
 							"host": [
-								"localhost"
+								"{{endpoint}}tickets"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"artista",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -110,104 +118,310 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Canal",
-			"item": [
+				},
 				{
-					"name": "Todos",
+					"name": "Equal",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{endpoint}}canales",
+							"raw": "{{endpoint}}eq",
 							"host": [
-								"{{endpoint}}canales"
+								"{{endpoint}}eq"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Uno",
+					"name": "Non Equal",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{endpoint}}canales/1",
+							"raw": "{{endpoint}}ne",
 							"host": [
-								"{{endpoint}}canales"
-							],
-							"path": [
-								"1"
+								"{{endpoint}}ne"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Eliminar",
+					"name": "Greater Than",
 					"request": {
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{endpoint}}canales/1",
+							"raw": "{{endpoint}}gt",
 							"host": [
-								"{{endpoint}}canales"
-							],
-							"path": [
-								"1"
+								"{{endpoint}}gt"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Crear",
+					"name": "Lower Than",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nombre\":\"Tester5\",\n    \"apellido\":\"Tester5\",\n    \"dni\":31256488    \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{endpoint}}canales",
+							"raw": "{{endpoint}}lte",
 							"host": [
-								"{{endpoint}}canales"
+								"{{endpoint}}lte"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Modificar",
+					"name": "Lower Than Equal",
 					"request": {
-						"method": "PUT",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\":2,\n    \"nombre\":\"Testerer\",\n    \"apellido\":\"Testerer\",\n    \"dni\":123456\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{endpoint}}canales/1",
+							"raw": "{{endpoint}}lt",
 							"host": [
-								"{{endpoint}}canales"
-							],
-							"path": [
-								"1"
+								"{{endpoint}}lt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IN",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}ln",
+							"host": [
+								"{{endpoint}}ln"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Not IN",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}or",
+							"host": [
+								"{{endpoint}}or"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}nin",
+							"host": [
+								"{{endpoint}}nin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AND",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}and",
+							"host": [
+								"{{endpoint}}and"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NOR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}nor",
+							"host": [
+								"{{endpoint}}nor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NOT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}near",
+							"host": [
+								"{{endpoint}}near"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NEAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}not",
+							"host": [
+								"{{endpoint}}not"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GeoWithin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}geowithin",
+							"host": [
+								"{{endpoint}}geowithin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Geo intersects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}text",
+							"host": [
+								"{{endpoint}}text"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Text",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}not",
+							"host": [
+								"{{endpoint}}not"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}exists",
+							"host": [
+								"{{endpoint}}exists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}elemmatch",
+							"host": [
+								"{{endpoint}}elemmatch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Element Match",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}size",
+							"host": [
+								"{{endpoint}}size"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Size",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}errores",
+							"host": [
+								"{{endpoint}}errores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Errores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}unwindgroup",
+							"host": [
+								"{{endpoint}}unwindgroup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unwind Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}exists",
+							"host": [
+								"{{endpoint}}exists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}lookup",
+							"host": [
+								"{{endpoint}}lookup"
 							]
 						}
 					},
@@ -240,13 +454,13 @@
 		{
 			"key": "endpoint",
 			"value": "http://localhost:3800/api/v1/",
-			"type": "default"
+			"type": "default",
+			"disabled": true
 		},
 		{
 			"key": "endpoint",
 			"value": "https://ticketeradb2api.vercel.app/api/v1/",
-			"type": "default",
-			"disabled": true
+			"type": "default"
 		}
 	]
 }

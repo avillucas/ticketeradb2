@@ -1,5 +1,4 @@
-}
-export default ETicketMotivo = {
+exports.ETicketMotivo = {
     desperfecto: "Desperfecto",
     cambioPlan: "Cambio de plan",
     baja: "Baja de plan",
