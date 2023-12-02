@@ -1,9 +1,21 @@
 'use strict'
-const { default: ticketEstadoEnum } = require('../enums/ticketEstado.enum');
-const { default: ticketMotivoEnum } = require('../enums/ticketMotivo.enum');
+const ticketEstadoEnum = require('../enums/ticketEstado.enum');
+const ticketMotivoEnum = require('../enums/ticketMotivo.enum');
 // Cargamos los modelos para usarlos posteriormente
-var ticketModelo = require('../models/ticket.model');
+var Ticket = require('../models/ticket.model');
 
+/**
+ * Hello word
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.sayHello = async function (req, res) {
+  try {
+    res.status(200).json("Hello word");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 /**
  * retorna todos los tickets 
  * @param {*} req 
@@ -11,7 +23,7 @@ var ticketModelo = require('../models/ticket.model');
  */
 exports.traerTodos = async function (req, res) {
   try {
-    const tickets = await ticketModelo.find();
+    const tickets = await Ticket.find();
     return res.status(200).json(tickets);
   } catch (error) {
     return res.status(500).json({
@@ -28,7 +40,7 @@ exports.traerTodos = async function (req, res) {
 exports.traerUno = async function (req, res) {
   try {
     var id = req.params.id;
-    const tickets = await ticketModelo.findById(id);
+    const tickets = await Ticket.findById(id);
     return res.status(200).json(tickets);
   } catch (error) {
     return res.status(500).json({
@@ -63,7 +75,7 @@ exports.crearUno = async function (req, res) {
 exports.eliminarUno = async function (req, res) {
   try {
     var id = req.params.id;
-    const ticketEliminado = await ticketModelo.deleteOne(id);
+    const ticketEliminado = await Ticket.deleteOne(id);
     res.status(200).json(ticketEliminado);
   } catch (error) {
     return res.status(500).json({
@@ -78,7 +90,7 @@ exports.eliminarUno = async function (req, res) {
 //GET - ($eq) Traer tickets en estado ABIERTO
 exports.traerTicketsEq = async (req, res) => {
   try {
-    const result = await Ticket.find({ "estado": { $eq: ticketEstadoEnum.abierto } });
+    const result = await Ticket.find({ "estado": { $eq: ticketEstadoEnum.TicketEstado.TicketEstado.abierto } });
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -88,8 +100,7 @@ exports.traerTicketsEq = async (req, res) => {
 //GET - ($gt) Traer tickets con fecha de creacion mayor a principios enero 2023
 exports.traerTicketsGt = async (req, res) => {
   try {
-    const limite = new Date("2023-01-01");
-    const gt = await Ticket.find({ "fechaCreacion": { $gte: limite } });
+    const gt = await Ticket.find({ "fechaCreacion": { $gt: "2023-01-01" } });
     res.status(200).json(gt);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -99,8 +110,7 @@ exports.traerTicketsGt = async (req, res) => {
 //GET - ($gte) Traer tickets con fecha de creacion mayor o igual a enero 2023
 exports.traerTicketsGte = async (req, res) => {
   try {
-    const limite = new Date("2023-01-01");
-    const gte = await Ticket.find({ "fechaCreacion": { $gte: limite } });
+    const gte = await Ticket.find({ "fechaCreacion": { $gte: "2023-01-01" } });
     res.status(200).json(gte);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -110,27 +120,18 @@ exports.traerTicketsGte = async (req, res) => {
 //GET - ($lt) Traer tickets creados previas o iguales a  enero 2023
 exports.traerTicketsLt = async (req, res) => {
   try {
-    const limite = new Date("2023-01-01");
-    const lt = await Ticket.find({
-      "fechaCreacion": { $lte: limite }
-    });
+    const lt = await Ticket.find({ "fechaCreacion": { $lt: "2023-01-02" } });
     res.status(200).json(lt);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-//GET - ($lte) Traer tickets creados entre enero y mayo de 2023
+//GET - ($lte) Traer tickets creadis antes o el 10 de enero de 2023
 exports.traerTicketsLte = async (req, res) => {
   try {
-    const inicio = new Date("2023-01-01");
-    const fin = new Date("2023-05-01");
-    const tc = await Ticket.find({
-      "fechaCreacion": {
-        $gte: inicio,
-        $lt: fin
-      }
-    });
+    const lt = await Ticket.find({ "fechaCreacion": { $lte: "2023-01-10" } });
+   
     res.status(200).json(tc);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -140,7 +141,7 @@ exports.traerTicketsLte = async (req, res) => {
 //GET - ($ne) Traer tickets en estado NO resuelto
 exports.traerTicketsNe = async (req, res) => {
   try {
-    const traerTicketsNe = await Ticket.find({ "estado": { $ne: ticketEstadoEnum.resuelto } });
+    const traerTicketsNe = await Ticket.find({ "estado": { $ne: ticketEstadoEnum.TicketEstado.resuelto } });
     res.status(200).json(traerTicketsNe);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -150,8 +151,7 @@ exports.traerTicketsNe = async (req, res) => {
 //GET - ($in) Traer tickets que estan en demorado/pendiente
 exports.traerTicketsIn = async (req, res) => {
   try {
-    const traerTicketsIn = await Ticket.find({ "estado": { $in: [ticketMotivo.demorado, ticketEstadoEnum.pendiente] } });
-
+    const traerTicketsIn = await Ticket.find({ "estado": { $in: [ticketMotivoEnum.demorado, ticketEstadoEnum.TicketEstado.pendiente] } });
     res.status(200).json(traerTicketsIn);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -161,7 +161,7 @@ exports.traerTicketsIn = async (req, res) => {
 //GET - ($nin) Traer tickets que no esten en estado ni "resuelto" ni "cancelado"
 exports.traerTicketsNin = async (req, res) => {
   try {
-    const ticketsNin = await Ticket.find({ "estado": { $nin: [ticketEstadoEnum.resuelto, ticketEstadoEnum.cancelado] } });
+    const ticketsNin = await Ticket.find({ "estado": { $nin: [ticketEstadoEnum.TicketEstado.resuelto, ticketEstadoEnum.TicketEstado.cancelado] } });
     res.status(200).json(ticketsNin);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -173,7 +173,7 @@ exports.traerTicketsOr = async (req, res) => {
   try {
     const traerTicketsOr = await Ticket.find({
       $or: [
-        { "estado": ticketEstadoEnum.abierto },
+        { "estado": ticketEstadoEnum.TicketEstado.abierto },
         { "motivo": ticketMotivoEnum.desperfecto }
       ]
     });
@@ -189,7 +189,7 @@ exports.traerTicketsAnd = async (req, res) => {
     const traerTicketsAnd = await Ticket.find({
       $and: [
         { "cliente.esEmpleado": true },
-        { "estado": ticketEstadoEnum.abierto }
+        { "estado": ticketEstadoEnum.TicketEstado.abierto }
       ]
     });
     res.status(200).json(traerTicketsAnd);
@@ -204,7 +204,7 @@ exports.traerTicketsNor = async (req, res) => {
     const traerTicketsNor = await Ticket.find({
       $nor: [
         { "cliente.esEmpleado": true },
-        { "estado": ticketEstadoEnum.resuelto }
+        { "estado": ticketEstadoEnum.TicketEstado.resuelto }
       ]
     });
     res.status(200).json(traerTicketsNor);
@@ -217,7 +217,7 @@ exports.traerTicketsNor = async (req, res) => {
 exports.traerTicketsNot = async (req, res) => {
   try {
     const traerTicketsNot = await Ticket.find({
-      "estado": { $not: { $eq: ticketEstadoEnum.pendiente } }
+      "estado": { $not: { $eq: ticketEstadoEnum.TicketEstado.pendiente } }
     });
     res.status(200).json(traerTicketsNot);
   } catch (error) {

@@ -43,8 +43,8 @@ const clienteSchema = new Schema({
         canales: [String]
     },
     localidad: {
-        codigoPostal: Number,
-        descripcion: String
+        nombre: String,
+        codigoPostal: Number
     },
 });
 

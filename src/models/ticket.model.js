@@ -33,7 +33,8 @@ const ticketSchema = new Schema({
         type: String,
         require,
         default: ticketEstadoEnum.abierto
-    }, ubicacion: {
+    },
+     ubicacion: {
         geolocalizacion: GeoSchema,
         properties: {
             name: String
@@ -68,4 +69,6 @@ const ticketSchema = new Schema({
 }, { timestamps: true });
 
 GeoSchema.index({ 'geolocalizacion': '2dsphere' });
-module.exports = mongoose.model('Ticket', ticketSchema);
+const Ticket = mongoose.model('Ticket', ticketSchema);
+
+module.exports = Ticket;
